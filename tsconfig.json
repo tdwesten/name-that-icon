@@ -21,20 +21,10 @@
     "module": "es6",
     "experimentalDecorators": true,
     "paths": {
-      "ember-thermos/tests/*": [
-        "tests/*"
-      ],
-      "ember-thermos/*": [
-        "app/*"
-      ],
-      "*": [
-        "types/*"
-      ]
+      "namethaticon/tests/*": ["tests/*"],
+      "namethaticon/*": ["app/*"],
+      "*": ["types/*"]
     }
   },
-  "include": [
-    "app/**/*",
-    "tests/**/*",
-    "types/**/*"
-  ]
+  "include": ["app/**/*", "tests/**/*", "types/**/*"]
 }

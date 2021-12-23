@@ -2,7 +2,7 @@
 
 module.exports = function (environment) {
   let ENV = {
-    modulePrefix: 'ember-thermos',
+    modulePrefix: 'namethaticon',
     environment,
     rootURL: '/',
     locationType: 'auto',

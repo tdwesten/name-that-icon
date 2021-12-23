@@ -1,5 +1,5 @@
-import Application from 'ember-thermos/app';
-import config from 'ember-thermos/config/environment';
+import Application from 'namethaticon/app';
+import config from 'namethaticon/config/environment';
 import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';

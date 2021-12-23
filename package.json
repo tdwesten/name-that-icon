@@ -1,8 +1,8 @@
 {
-  "name": "ember-thermos",
-  "version": "0.0.0",
+  "name": "name-that-icon",
+  "version": "0.0.1",
   "private": true,
-  "description": "Small description for ember-thermos goes here",
+  "description": "A little game to test you knowledge of Font Awesome Icon names",
   "repository": "",
   "license": "MIT",
   "author": "",
