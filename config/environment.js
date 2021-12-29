@@ -2,7 +2,7 @@
 
 module.exports = function (environment) {
   let ENV = {
-    modulePrefix: 'namethaticon',
+    modulePrefix: 'name-that-icon',
     environment,
     rootURL: '/',
     locationType: 'auto',

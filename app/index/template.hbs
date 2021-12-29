@@ -1,0 +1,17 @@
+<div class="grid grid-cols-12">
+  {{#each this.icons as |icon|}}
+    <div class="p-6 text-gray-500 justify-center flex items-center">
+      <FaIcon @icon={{icon}} />
+    </div>
+  {{/each}}
+</div>
+<LinkTo
+  @route="game"
+  type="button"
+  @model={{@model.game}}
+  class="bg-yellow-500 m-1 border-2 p-6 rounded-lg border-t-0 border-r-0 border-l-0 text-gray-800 font-bold border-yellow-700 active:border-b-0 active:border-t-2 flex"
+>
+  <span class="-mb-1">
+    Start the game!
+  </span>
+</LinkTo>

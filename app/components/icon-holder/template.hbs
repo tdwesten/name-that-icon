@@ -1,0 +1,13 @@
+<div
+  class="flex items-center justify-center text-yellow-400 text-12xl p-6 relative"
+>
+  <div
+    class={{concat
+      ' h-96  rounded-full flex items-center justify-center aspect-square transition-colors z-10'
+      ' '
+      this.bgColorClass
+    }}
+  >
+    {{yield}}
+  </div>
+</div>

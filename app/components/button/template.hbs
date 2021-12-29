@@ -1,0 +1,10 @@
+<button
+  type="button"
+  disabled={{@disabled}}
+  class="bg-yellow-500 text-center justify-center m-1 border-2 p-6 rounded-lg border-t-0 border-r-0 border-l-0 text-gray-800 font-bold border-yellow-700 active:border-b-0 active:border-t-2 flex disabled:bg-gray-500 disabled:border-gray-700 transition-colors disabled:pointer-events-none"
+  onclick={{@onClick}}
+>
+  <span class="-mb-1 text-center">
+    {{yield}}
+  </span>
+</button>

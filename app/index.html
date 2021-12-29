@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="bg-gray-800 antialiased">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,7 +13,13 @@
     <link
       integrity=""
       rel="stylesheet"
-      href="{{rootURL}}assets/namethaticon.css"
+      href="{{rootURL}}assets/name-that-icon.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet"
     />
 
     {{content-for "head-footer"}}
@@ -22,7 +28,7 @@
     {{content-for "body"}}
 
     <script src="{{rootURL}}assets/vendor.js"></script>
-    <script src="{{rootURL}}assets/namethaticon.js"></script>
+    <script src="{{rootURL}}assets/name-that-icon.js"></script>
 
     {{content-for "body-footer"}}
   </body>

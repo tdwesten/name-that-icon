@@ -1,0 +1,9 @@
+<div class="flex justify-center">
+  <div class="grid grid-cols-2 gap-2 max-w-xxl relatief">
+    {{#each @answers as |answer|}}
+      <Button @onClick={{fn @onSelect answer}} @disabled={{@answerGiven}}>
+        {{answer.iconName}}
+      </Button>
+    {{/each}}
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="flex flex-col items-center">
+  <div class="mt-1 md:mt-2 grid gap-5 grid-cols-2 w-60">
+    <Rounds @gameRounds={{@model.gameRounds}} @round={{@model.round}} />
+    <Score @amount={{@model.score}} />
+  </div>
+  <div
+    class="flex items-center justify-center text-yellow-400 text-12xl p-6 relative"
+  >
+    <div
+      class={{concat
+        ' h-80  rounded-full flex items-center justify-center aspect-square transition-colors z-10 relative'
+        ' '
+        this.bgColorClass
+      }}
+    >
+      <div
+        class={{concat
+          'rounded-full  h-10 w-10 absolute right-0 top-2/3 text-lg flex items-center justify-center'
+          ' '
+          this.subIconBackgroundClass
+        }}
+      ></div>
+      <div
+        class={{concat
+          'rounded-full  h-10 w-10 absolute right-0 top-2/3 text-lg flex items-center justify-center'
+          ' '
+          this.subIconBgClass
+        }}
+      >
+        <span class="-mb-1 font-bold">
+          {{this.roundCountDownTime}}
+        </span>
+      </div>
+      <FaIcon @icon={{this.round.icon}} />
+    </div>
+  </div>
+  {{#if this.answerGiven}}
+    {{#if this.correctAnswer}}
+      <div class="flex justify-center">
+        <Notification @bgColor="bg-green-800">
+          Yeah that's right! Next round in
+          <span class="font-bold">
+            {{this.countDownTime}}
+          </span>
+          seconds!
+        </Notification>
+      </div>
+    {{else}}
+      <div class="flex justify-center">
+        <Notification @bgColor="bg-orange-800">
+          Oeps!! Next round in
+          <span class="font-bold">
+            {{this.countDownTime}}
+          </span>
+          seconds!
+        </Notification>
+      </div>
+    {{/if}}
+  {{else}}
+    <AnwsersHolder
+      @answerGiven={{this.answerGiven}}
+      @answers={{this.round.answers}}
+      @onSelect={{fn this.selectAnswer @model}}
+    />
+  {{/if}}
+</div>

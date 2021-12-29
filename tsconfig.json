@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "target": "es2021",
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
@@ -10,10 +10,11 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noEmitOnError": true,
+    // "noImplicitReturns": true,
+    "noEmitOnError": false,
     "noEmit": true,
     "inlineSourceMap": true,
     "inlineSources": true,
@@ -21,10 +22,17 @@
     "module": "es6",
     "experimentalDecorators": true,
     "paths": {
-      "namethaticon/tests/*": ["tests/*"],
-      "namethaticon/*": ["app/*"],
+      "name-that-icon/tests/*": ["tests/*"],
+      "name-that-icon/*": ["app/*"],
       "*": ["types/*"]
-    }
+    },
+    "skipLibCheck": true
   },
-  "include": ["app/**/*", "tests/**/*", "types/**/*"]
+  "include": [
+    "app/**/*",
+    "tests/**/*",
+    "types/**/*",
+    "types/ember-power-calendar/*",
+    "types/ember-changeset/*"
+  ]
 }
