@@ -22,6 +22,10 @@ export default class IconService extends Service {
         return icon as IconList.IconDefinition;
       }),
     ];
+
+    this.iconList = this.iconList.filter(
+      (icon) => icon.iconName !== 'font-awesome'
+    );
   }
 
   getRandomIcon(): IconList.IconDefinition {
