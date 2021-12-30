@@ -6,7 +6,9 @@
       {{/if}}
     </div>
     <h1 class="text-gray-100 font-bold text-lg mr-2 -mb-1">
-      {{@title}}
+      <LinkTo @route="index">
+        {{@title}}
+      </LinkTo>
     </h1>
   </div>
   <div class="md:flex items-center hidden">

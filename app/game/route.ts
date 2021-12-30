@@ -7,13 +7,15 @@ export default class GameRoute extends Route {
   @service declare store: DS.Store;
 
   model(params: any) {
-    const game = this.store.findRecord(Game.modelName, params.id);
-
-    if (!game) {
-      this.transitionTo('index');
-    }
-
-    return game;
+    return this.store
+      .findRecord(Game.modelName, params.id)
+      .then((game) => {
+        return game;
+      })
+      .catch(() => {
+        this.transitionTo('index');
+        return;
+      });
   }
 
   setupController(controller: any, model: unknown): void {

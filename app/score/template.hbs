@@ -1,0 +1,38 @@
+<div
+  class="flex items-center fixed h-[calc(100vh_-_4rem)] left-0 right-0 justify-center"
+>
+  <div
+    class="grid grid-cols-4 md:grid-cols-12 h-[calc(100vh_-_4rem)] absolute left-0 right-0 top-0 bottom-0"
+  >
+    {{#each @model.icons as |icon|}}
+      <div class="md:p-6 text-gray-500 p-4 justify-center flex items-center">
+        <FaIcon @icon={{icon}} />
+      </div>
+    {{/each}}
+  </div>
+  <div
+    class="flex flex-col items-center m-4 bg-gray-800 rounded-md text-center z-10"
+  >
+    <div class="p-20">
+      <h1 class="text-gray-100 font-light italic mb-10 text-lg">
+        Your score is:
+      </h1>
+      <h1 class="text-yellow-500 text-3xl md:text-5xl font-bold mb-10">
+        {{@model.game.score}}
+      </h1>
+      <hr />
+      <div class="mt-8">
+        <LinkTo
+          @route="game"
+          type="button"
+          @model={{@model.newGame}}
+          class="bg-yellow-500 m-1 border-2 inline-block py-6 px-10 rounded-lg border-t-0 border-r-0 border-l-0 text-gray-800 font-bold border-yellow-700 active:border-b-0 active:border-t-2"
+        >
+          <span class="-mb-1">
+            Start a NEW game!
+          </span>
+        </LinkTo>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,14 +1,14 @@
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center pt-10">
   <div class="mt-1 md:mt-2 grid gap-5 grid-cols-2 w-60">
-    <Rounds @gameRounds={{@model.gameRounds}} @round={{@model.round}} />
-    <Score @amount={{@model.score}} />
+    <Rounds @gameRounds={{this.maxGameRounds}} @round={{@model.round}} />
+    <CurrentScore @amount={{@model.score}} />
   </div>
   <div
     class="flex items-center justify-center text-yellow-400 text-12xl p-6 relative"
   >
     <div
       class={{concat
-        ' h-80  rounded-full flex items-center justify-center aspect-square transition-colors z-10 relative'
+        ' h-80  rounded-full flex items-center justify-center aspect-square transition-all z-10 relative'
         ' '
         this.bgColorClass
       }}

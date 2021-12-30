@@ -7,7 +7,8 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  this.route('game', { path: 'game/:id/' }, function () {});
+  this.route('score', { path: 'score/:id/' });
+  this.route('game', { path: 'game/:id/' });
   this.route('scoreboard');
   this.route('credits');
 });

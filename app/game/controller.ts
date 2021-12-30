@@ -1,12 +1,9 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
+import { Router } from '@ember/routing';
 import { inject as service } from '@ember/service';
 import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
-import {
-  faCheck,
-  faHourglassStart,
-  faTimes,
-} from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { tracked } from '@glimmer/tracking';
 import { trackedNested } from 'ember-tracked-nested';
 import GameRound from '../dto/game-round.dto';
@@ -17,16 +14,17 @@ import IconService from '../services/icon-service';
 export default class GameController extends Controller.extend({}) {
   @service('icon-service') private declare iconService: IconService;
   @service('game-service') private declare gameService: GameService;
+  @service() private declare router: Router;
   @trackedNested private declare round: GameRound;
   @tracked public declare startTime: number;
   @tracked public time = 0;
-  @tracked public subIcon = faHourglassStart;
   @tracked public declare correctAnswer: boolean;
   @tracked public answerGiven = false;
   public countDown: any;
-  @tracked public countDownTime = 3;
+  @tracked public countDownTime = Game.countdownToNextRound;
   public roundCountDown: any;
-  @tracked public roundCountDownTime = 10;
+  @tracked public roundCountDownTime = Game.gameRoundTime;
+  public maxGameRounds = Game.maxGameRounds;
 
   constructor(owner: any) {
     super(owner);
@@ -67,13 +65,25 @@ export default class GameController extends Controller.extend({}) {
     clearInterval(this.roundCountDown);
 
     if (this.correctAnswer) {
-      this.subIcon = faCheck;
       this.calucateScore();
       const score = this.time;
       game.addPoints(score);
     }
 
+    if (this.model?.gameEnded) {
+      this.stopGame();
+    }
+
     this.startCountDown();
+  }
+
+  stopGame() {
+    clearInterval(this.countDown);
+    clearInterval(this.roundCountDown);
+
+    this.model.save();
+
+    this.router.transitionTo('score', this.model.id);
   }
 
   startCountDown() {
@@ -106,7 +116,7 @@ export default class GameController extends Controller.extend({}) {
   roundFailed() {
     this.answerGiven = true;
     this.correctAnswer = false;
-    this.roundCountDownTime = 10;
+    this.roundCountDownTime = Game.gameRoundTime;
 
     this.startCountDown();
   }
@@ -119,8 +129,8 @@ export default class GameController extends Controller.extend({}) {
   startNewRound() {
     this.answerGiven = false;
     this.correctAnswer = false;
-    this.countDownTime = 3;
-    this.roundCountDownTime = 10;
+    this.countDownTime = Game.countdownToNextRound;
+    this.roundCountDownTime = Game.gameRoundTime;
 
     this.startTimer();
     this.startRoundCountDown();
