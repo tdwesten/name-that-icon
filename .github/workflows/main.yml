@@ -35,10 +35,13 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Install deps
-        run: npm install --silent
+        run: yarn install
+
+      - name: Linting
+        run: yarn lint
 
       - name: Build application
-        run: npm run build-hard
+        run: yarn build
 
       - name: Deploy with rsync
         run: rsync -avz --omit-dir-times -r dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/namethaticon.com/public/
