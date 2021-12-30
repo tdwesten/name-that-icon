@@ -10,11 +10,11 @@ export default class Game extends Model {
   @attr('number', { defaultValue: 1 }) public declare round: number;
 
   addPoints(amount: number) {
-    this.set('score', this.score + amount);
+    this.score = this.score + amount;
   }
 
   addRound() {
-    this.set('round', this.round + 1);
+    this.round = this.round + 1;
   }
 
   get gameEnded() {

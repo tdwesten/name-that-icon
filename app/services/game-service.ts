@@ -1,10 +1,12 @@
 import Service, { inject as service } from '@ember/service';
+import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
 import GameRound from '../dto/game-round.dto';
 import IconService from '../services/icon-service';
+import arrayShuffle from 'array-shuffle';
 
 export default class GameService extends Service {
   @service('icon-service') private declare iconService: IconService;
-  constructor(owner: any) {
+  constructor(owner: object) {
     super(owner);
   }
 
@@ -14,27 +16,15 @@ export default class GameService extends Service {
     return new GameRound(icon, this.getAnswers(icon));
   }
 
-  getAnswers(theRightAnswer: any): any[] {
-    let anwsers = [
+  getAnswers(theRightAnswer: IconDefinition): IconDefinition[] {
+    const anwsers = [
       theRightAnswer,
       this.iconService.getRandomIcon(),
       this.iconService.getRandomIcon(),
       this.iconService.getRandomIcon(),
     ];
 
-    return this.shuffleArray(anwsers);
-  }
-
-  shuffleArray(arr: any[]): any[] {
-    return (
-      Array(arr.length)
-        .fill(null)
-        .map((_, i) => [Math.random(), i])
-        // @ts-ignore
-        .sort(([a], [b]) => a - b)
-        // @ts-ignore
-        .map(([, i]) => arr[i])
-    );
+    return arrayShuffle(anwsers);
   }
 }
 

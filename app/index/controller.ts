@@ -8,7 +8,7 @@ export default class IndexController extends Controller {
   @service declare iconService: IconService;
   @trackedNested public declare icons: IconDefinition[];
 
-  constructor(owner: any) {
+  constructor(owner: object) {
     super(owner);
 
     this.icons = this.iconService.getMultipleRandomIcons(108);

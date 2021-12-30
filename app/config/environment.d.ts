@@ -4,6 +4,7 @@ export default config;
  * Type declarations for
  *    import config from 'my-app/config/environment'
  */
+// eslint-disable-next-line @typescript-eslint/naming-convention
 declare const config: {
   environment: string;
   modulePrefix: string;

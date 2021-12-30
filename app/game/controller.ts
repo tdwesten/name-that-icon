@@ -3,7 +3,6 @@ import { action } from '@ember/object';
 import { Router } from '@ember/routing';
 import { inject as service } from '@ember/service';
 import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { tracked } from '@glimmer/tracking';
 import { trackedNested } from 'ember-tracked-nested';
 import GameRound from '../dto/game-round.dto';
@@ -11,7 +10,7 @@ import Game from '../models/game';
 import GameService from '../services/game-service';
 import IconService from '../services/icon-service';
 
-export default class GameController extends Controller.extend({}) {
+export default class GameController extends Controller {
   @service('icon-service') private declare iconService: IconService;
   @service('game-service') private declare gameService: GameService;
   @service() private declare router: Router;
@@ -20,13 +19,13 @@ export default class GameController extends Controller.extend({}) {
   @tracked public time = 0;
   @tracked public declare correctAnswer: boolean;
   @tracked public answerGiven = false;
-  public countDown: any;
+  public countDown!: ReturnType<typeof setInterval>;
   @tracked public countDownTime = Game.countdownToNextRound;
-  public roundCountDown: any;
+  public roundCountDown!: ReturnType<typeof setInterval>;
   @tracked public roundCountDownTime = Game.gameRoundTime;
   public maxGameRounds = Game.maxGameRounds;
 
-  constructor(owner: any) {
+  constructor(owner: object) {
     super(owner);
 
     this.startNewRound();
@@ -60,7 +59,6 @@ export default class GameController extends Controller.extend({}) {
   selectAnswer(game: Game, answer: IconDefinition) {
     this.answerGiven = true;
     this.correctAnswer = this.round.isRightAnwser(answer);
-    this.subIcon = faTimes;
 
     clearInterval(this.roundCountDown);
 
