@@ -34,14 +34,14 @@ jobs:
       - name: Adding Known Hosts
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Install deps
-        run: yarn install --silent
+      # - name: Install deps
+      #   run: yarn install --silent
 
-      - name: Linting
-        run: yarn lint --silent
+      # - name: Linting
+      #   run: yarn lint --silent
 
-      - name: Build application
-        run: yarn build --silent
+      # - name: Build application
+      #   run: yarn build --silent
 
       - name: Deploy with rsync
         run: rsync -avz --omit-dir-times -r dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/namethaticon.com/public/
