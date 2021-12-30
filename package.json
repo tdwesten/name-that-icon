@@ -111,6 +111,7 @@
     "autoprefixer": "^10.4.0",
     "postcss": "^8.4.5",
     "postcss-import": "^14.0.2",
+    "typescript-eslint": "^0.0.1-alpha.0",
     "uuid": "^8.3.2"
   }
 }
