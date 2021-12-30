@@ -3,7 +3,7 @@ import Model, { attr } from '@ember-data/model';
 export default class Game extends Model {
   public static modelName = 'game';
   public static gameRoundTime = 10;
-  public static maxGameRounds = 3;
+  public static maxGameRounds = 10;
   public static countdownToNextRound = 3;
 
   @attr('number', { defaultValue: 0 }) public declare score: number;
@@ -15,6 +15,7 @@ export default class Game extends Model {
 
   addRound() {
     this.round = this.round + 1;
+    this.save();
   }
 
   get gameEnded() {
