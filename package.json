@@ -108,6 +108,7 @@
     "edition": "octane"
   },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@types/uuid": "^8.3.3",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",

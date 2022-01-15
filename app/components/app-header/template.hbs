@@ -1,28 +1,28 @@
-<header class="bg-gray-900  h-16 flex items-center px-4">
-  <div class="flex-auto flex items-center">
-    <div class="text-yellow-400 mr-4 w-4 flex justify-center items-center">
+<header class='bg-gray-900 h-16 flex items-center px-4'>
+  <div class='flex-auto flex items-center'>
+    <div class='text-yellow-400 mr-4 w-4 flex justify-center items-center'>
       {{#if this.getRandomIcon}}
         <FaIcon @icon={{this.getRandomIcon}} />
       {{/if}}
     </div>
-    <h1 class="text-gray-100 font-bold text-lg mr-2 -mb-1">
-      <LinkTo @route="index">
+    <h1 class='text-gray-100 font-bold text-lg mr-2 -mb-1'>
+      <LinkTo @route='index'>
         {{@title}}
       </LinkTo>
     </h1>
   </div>
-  <div class="md:flex items-center hidden">
+  <div class='md:flex items-center hidden'>
     <LinkTo
-      @route="scoreboard"
-      class="text-gray-300 -mb-1 hover:text-gray-50 ml-4"
-    >
-      Scoreboard
-    </LinkTo>
-    <LinkTo
-      @route="credits"
-      class="text-gray-300 -mb-1 hover:text-gray-50 ml-4"
+      @route='credits'
+      class='text-gray-300 -mb-1 hover:text-gray-50 ml-4'
     >
       Credits
     </LinkTo>
+    <a
+      href='https://github.com/tdwesten/name-that-icon'
+      class='text-gray-300 -mb-1 hover:text-gray-50 ml-4'
+    >
+      View source
+    </a>
   </div>
 </header>
