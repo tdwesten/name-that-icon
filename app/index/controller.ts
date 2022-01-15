@@ -17,6 +17,13 @@ export default class IndexController extends Controller {
 
     const namespace = `namethaticon_${ENV.environment}`;
 
+    countapi.create({
+      namespace: 'namethaticon_production',
+      key: 'gameHighscore',
+      value: 77,
+      enable_reset: true,
+    });
+
     if (document.location.pathname === '/') {
       countapi.hit(namespace, 'visits');
     }

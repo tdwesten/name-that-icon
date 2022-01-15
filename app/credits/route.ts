@@ -10,8 +10,8 @@ export default class Credits extends Route {
       gamesPlayed: await countapi
         .get(this.namespace, 'gamesPlayed')
         .then((v) => v.value),
-      highscore: await countapi
-        .get(this.namespace, 'highscore')
+      gameHighscore: await countapi
+        .get(this.namespace, 'gameHighscore')
         .then((v) => v.value),
     };
   }

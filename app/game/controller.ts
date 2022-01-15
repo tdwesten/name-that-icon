@@ -86,12 +86,13 @@ export default class GameController extends Controller {
 
       countapi.hit(namespace, 'gamesPlayed');
 
-      countapi.get(namespace, 'highscore').then((v) => {
+      countapi.get(namespace, 'gameHighscore').then((v) => {
         if (v.value === null) {
           countapi.create({
             namespace,
-            key: 'highscore',
+            key: 'gameHighscore',
             value: this.model.score,
+            enable_reset: true,
           });
         } else {
           if (v.value < this.model.score) {
