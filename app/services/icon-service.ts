@@ -30,8 +30,12 @@ export default class IconService extends Service {
 
   getRandomIcon(): IconList.IconDefinition {
     return this.iconList[
-      Math.floor(Math.random() * this.iconList.length)
+      this.randomNumberBetween(1, this.iconList.length)
     ] as IconList.IconDefinition;
+  }
+
+  randomNumberBetween(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   getMultipleRandomIcons(amount = 1): IconList.IconDefinition[] {
