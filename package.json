@@ -1,11 +1,11 @@
 {
   "name": "name-that-icon",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "description": "A little game to test your knowledge of Font Awesome Icon names",
-  "repository": "",
+  "repository": "https://github.com/tdwesten/name-that-icon",
   "license": "MIT",
-  "author": "",
+  "author": "Thomas van der Westen",
   "directories": {
     "doc": "doc",
     "test": "tests"
