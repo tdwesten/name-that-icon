@@ -4,7 +4,9 @@ import { Router } from '@ember/routing';
 import { inject as service } from '@ember/service';
 import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
 import { tracked } from '@glimmer/tracking';
+import countapi from 'countapi-js';
 import { trackedNested } from 'ember-tracked-nested';
+import ENV from '../config/environment';
 import GameRound from '../dto/game-round.dto';
 import Game from '../models/game';
 import GameService from '../services/game-service';
@@ -80,6 +82,24 @@ export default class GameController extends Controller {
     clearInterval(this.roundCountDown);
 
     this.model.save().then(() => {
+      const namespace = `namethaticon_${ENV.environment}`;
+
+      countapi.hit(namespace, 'gamesPlayed');
+
+      countapi.get(namespace, 'highscore').then((v) => {
+        if (v.value === null) {
+          countapi.create({
+            namespace,
+            key: 'highscore',
+            value: this.model.score,
+          });
+        } else {
+          if (v.value < this.model.score) {
+            countapi.update(namespace, 'highscore', this.model.score);
+          }
+        }
+      });
+
       this.router.transitionTo('score', this.model.id);
     });
   }

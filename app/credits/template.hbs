@@ -2,6 +2,8 @@
   class='flex items-center fixed h-[calc(100vh_-_4rem)] left-0 right-0 justify-center text-white'
 >
   <div class='p-10'>
+    <h2 class='text-lg font-bold'>Credits</h2>
+
     All credits and copyright belongs to their respective owners. The icons used
     in this game are from
     <a
@@ -18,5 +20,29 @@
       class='underline text-yellow-400 hover:text-yellow-800'
       href='https://twitter.com/tdwesten'
     >Thomas van der Westen</a>.
+    <div class='my-10'></div>
+    <h2 class='text-lg font-bold'>Statistic</h2>
+    <p>I like statistic and this is a nice moment to try
+      <a
+        class='underline text-yellow-400 hover:text-yellow-800'
+        href='https://countapi.xyz/'
+      >countapi.xyz</a>.</p><br />
+    <table>
+      <thead></thead>
+      <tbody>
+        <tr>
+          <th class='text-left'>Number of visits:</th>
+          <td class='pl-2'>{{@model.visits}}</td>
+        </tr>
+        <tr>
+          <th class='text-left'>Number of games played:</th>
+          <td class='pl-2'>{{@model.gamesPlayed}}</td>
+        </tr>
+        <tr>
+          <th class='text-left'>Current highscore:</th>
+          <td class='pl-2'>{{@model.highscore}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

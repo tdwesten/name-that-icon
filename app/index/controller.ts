@@ -3,6 +3,8 @@ import { inject as service } from '@ember/service';
 import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
 import { trackedNested } from 'ember-tracked-nested';
 import IconService from '../services/icon-service';
+import countapi from 'countapi-js';
+import ENV from '../config/environment';
 
 export default class IndexController extends Controller {
   @service declare iconService: IconService;
@@ -12,6 +14,12 @@ export default class IndexController extends Controller {
     super(owner);
 
     this.icons = this.iconService.getMultipleRandomIcons(108);
+
+    const namespace = `namethaticon_${ENV.environment}`;
+
+    if (document.location.pathname === '/') {
+      countapi.hit(namespace, 'visits');
+    }
   }
 }
 
