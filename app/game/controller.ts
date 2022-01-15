@@ -95,7 +95,7 @@ export default class GameController extends Controller {
           });
         } else {
           if (v.value < this.model.score) {
-            countapi.update(namespace, 'highscore', this.model.score);
+            countapi.set(namespace, 'highscore', this.model.score);
           }
         }
       });
