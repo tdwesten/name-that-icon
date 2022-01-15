@@ -6,6 +6,7 @@ import arrayShuffle from 'array-shuffle';
 
 export default class GameService extends Service {
   @service('icon-service') private declare iconService: IconService;
+
   constructor(owner: object) {
     super(owner);
   }

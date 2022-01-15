@@ -14,20 +14,25 @@ export default class GameController extends Controller {
   @service('icon-service') private declare iconService: IconService;
   @service('game-service') private declare gameService: GameService;
   @service() private declare router: Router;
+
   @trackedNested private declare round: GameRound;
   @tracked public declare startTime: number;
   @tracked public time = 0;
   @tracked public declare correctAnswer: boolean;
   @tracked public answerGiven = false;
-  public countDown!: ReturnType<typeof setInterval>;
   @tracked public countDownTime = Game.countdownToNextRound;
-  public roundCountDown!: ReturnType<typeof setInterval>;
   @tracked public roundCountDownTime = Game.gameRoundTime;
+
+  public countDown!: ReturnType<typeof setInterval>;
+  public roundCountDown!: ReturnType<typeof setInterval>;
   public maxGameRounds = Game.maxGameRounds;
 
   constructor(owner: object) {
     super(owner);
+  }
 
+  @action
+  onDidInsert() {
     this.startNewRound();
   }
 
@@ -63,13 +68,8 @@ export default class GameController extends Controller {
     clearInterval(this.roundCountDown);
 
     if (this.correctAnswer) {
-      this.calucateScore();
-      const score = this.time;
+      const score = this.calucateScore();
       game.addPoints(score);
-    }
-
-    if (this.model?.gameEnded) {
-      this.stopGame();
     }
 
     this.startCountDown();
@@ -79,12 +79,14 @@ export default class GameController extends Controller {
     clearInterval(this.countDown);
     clearInterval(this.roundCountDown);
 
-    this.model.save();
-
-    this.router.transitionTo('score', this.model.id);
+    this.model.save().then(() => {
+      this.router.transitionTo('score', this.model.id);
+    });
   }
 
   startCountDown() {
+    clearInterval(this.countDown);
+
     this.countDown = setInterval(() => {
       if (this.countDownTime === 1) {
         this.startNewRound();
@@ -96,6 +98,7 @@ export default class GameController extends Controller {
   }
 
   startRoundCountDown() {
+    clearInterval(this.roundCountDown);
     this.roundCountDown = setInterval(() => {
       if (this.roundCountDownTime === 1) {
         this.roundFailed();
@@ -119,23 +122,30 @@ export default class GameController extends Controller {
     this.startCountDown();
   }
 
-  calucateScore() {
+  calucateScore(): number {
     const now = new Date();
-    this.time = Math.floor((now.getTime() - this.startTime) / 100);
+    const timeSpent = Math.floor((now.getTime() - this.startTime) / 1000);
+    const score = Game.gameRoundTime - timeSpent;
+
+    return score > 0 ? score : 0;
   }
 
   startNewRound() {
-    this.answerGiven = false;
-    this.correctAnswer = false;
-    this.countDownTime = Game.countdownToNextRound;
-    this.roundCountDownTime = Game.gameRoundTime;
+    if (this?.model?.gameEnded) {
+      this.stopGame();
+    } else {
+      this.answerGiven = false;
+      this.correctAnswer = false;
+      this.countDownTime = Game.countdownToNextRound;
+      this.roundCountDownTime = Game.gameRoundTime;
 
-    this.startTimer();
-    this.startRoundCountDown();
-    this.round = this.gameService.newRound();
+      this.startTimer();
+      this.startRoundCountDown();
+      this.round = this.gameService.newRound();
 
-    if (this.model) {
-      this.model.addRound();
+      if (this.model) {
+        this.model.addRound();
+      }
     }
   }
 }
