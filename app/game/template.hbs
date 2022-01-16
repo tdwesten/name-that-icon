@@ -1,15 +1,15 @@
-<div class="flex flex-col items-center pt-10">
+<div class='flex flex-col items-center pt-4 lg:pt-10'>
   {{did-insert this.onDidInsert}}
-  <div class="mt-1 md:mt-2 grid gap-5 grid-cols-2 w-60">
+  <div class='mt-1 md:mt-2 grid gap-5 grid-cols-2 w-60'>
     <Rounds @gameRounds={{this.maxGameRounds}} @round={{@model.round}} />
     <CurrentScore @amount={{@model.score}} />
   </div>
   <div
-    class="flex items-center justify-center text-yellow-400 text-12xl p-6 relative"
+    class='flex items-center justify-center text-yellow-400 text-6xl lg:text-12xl p-6 relative'
   >
     <div
       class={{concat
-        ' h-80  rounded-full flex items-center justify-center aspect-square transition-all z-10 relative'
+        ' lg:h-80 h-52  rounded-full flex items-center justify-center aspect-square transition-all z-10 relative'
         ' '
         this.bgColorClass
       }}
@@ -28,7 +28,7 @@
           this.subIconBgClass
         }}
       >
-        <span class="-mb-1 font-bold">
+        <span class='-mb-1 font-bold'>
           {{this.roundCountDownTime}}
         </span>
       </div>
@@ -37,20 +37,20 @@
   </div>
   {{#if this.answerGiven}}
     {{#if this.correctAnswer}}
-      <div class="flex justify-center">
-        <Notification @bgColor="bg-green-800">
+      <div class='flex justify-center'>
+        <Notification @bgColor='bg-green-800'>
           Yeah that's right! Next round in
-          <span class="font-bold">
+          <span class='font-bold'>
             {{this.countDownTime}}
           </span>
           seconds!
         </Notification>
       </div>
     {{else}}
-      <div class="flex justify-center">
-        <Notification @bgColor="bg-orange-800">
+      <div class='flex justify-center'>
+        <Notification @bgColor='bg-orange-800'>
           Oeps!! Next round in
-          <span class="font-bold">
+          <span class='font-bold'>
             {{this.countDownTime}}
           </span>
           seconds!
